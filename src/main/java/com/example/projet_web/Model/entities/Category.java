@@ -1,12 +1,21 @@
+package com.example.projet_web.Model.entities;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "category")
-public class Category {
+@NoArgsConstructor //Lombok
+@AllArgsConstructor
+public class Category implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name = "categoryId")
-    private Integer categoryId;
+    private Long categoryId;
 
     @Column(name = "categoryName")
     private String categoryName;
@@ -14,11 +23,11 @@ public class Category {
     @Column(name = "imagePath")
     private String imagePath;
 
-    public Integer getCategoryId() {
+    public Long getCategoryId() {
         return this.categoryId;
     }
 
-    public void setCategoryId(Integer categoryId) {
+    public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
     }
 

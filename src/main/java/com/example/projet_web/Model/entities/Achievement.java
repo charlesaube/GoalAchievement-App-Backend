@@ -1,12 +1,21 @@
+package com.example.projet_web.Model.entities;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "achievement")
-public class Achievement {
+@NoArgsConstructor //Lombok
+@AllArgsConstructor
+public class Achievement implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "achievementId")
-    private Integer achievementId;
+    private Long achievementId;
 
     @Column(name = "title")
     private String title;
@@ -17,17 +26,19 @@ public class Achievement {
     @Column(name = "date")
     private java.sql.Date date;
 
-    @Column(name = "userId")
-    private Integer userId;
+    @ManyToOne
+    @JoinColumn(name = "userId",referencedColumnName = "userId")
+    private User user;
 
-    @Column(name = "categoryId")
-    private Integer categoryId;
+    @ManyToOne
+    @JoinColumn(name = "categoryId",referencedColumnName = "categoryId")
+    private Category category;
 
-    public Integer getAchievementId() {
+    public Long getAchievementId() {
         return this.achievementId;
     }
 
-    public void setAchievementId(Integer achievementId) {
+    public void setAchievementId(Long achievementId) {
         this.achievementId = achievementId;
     }
 
@@ -55,19 +66,19 @@ public class Achievement {
         this.date = date;
     }
 
-    public Integer getUserId() {
-        return this.userId;
+    public User getUser() {
+        return this.user;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Integer getCategoryId() {
-        return this.categoryId;
+    public Category getCategory() {
+        return this.category;
     }
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

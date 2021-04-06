@@ -1,12 +1,21 @@
+package com.example.projet_web.Model.entities;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "coach")
-public class Coach {
+@NoArgsConstructor //Lombok
+@AllArgsConstructor
+public class Coach implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name = "coachId")
-    private Integer coachId;
+    private Long coachId;
 
     @Column(name = "firstName")
     private String firstName;
@@ -26,11 +35,11 @@ public class Coach {
     @Column(name = "description")
     private String description;
 
-    public Integer getCoachId() {
+    public Long getCoachId() {
         return this.coachId;
     }
 
-    public void setCoachId(Integer coachId) {
+    public void setCoachId(Long coachId) {
         this.coachId = coachId;
     }
 
