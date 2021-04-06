@@ -11,6 +11,7 @@ import java.io.Serializable;
         @NamedQuery(name = "Coach.findAllCoach",query = "select c from Coach c")
         , @NamedQuery(name = "Coach.findCoachById",query = "select c from Coach c where c.coachId = :coachId")
         , @NamedQuery(name = "Coach.findAllCoachByFirstNameSubString",query = "select c from Coach c where substring(c.firstName, 1, length(:subStr)) = :subStr")
+
 })
 @NoArgsConstructor //Lombok
 @AllArgsConstructor

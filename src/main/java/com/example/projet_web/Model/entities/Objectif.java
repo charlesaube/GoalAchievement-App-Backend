@@ -9,6 +9,13 @@ import java.io.Serializable;
 @Table(name = "objectif")
 @NoArgsConstructor //Lombok
 @AllArgsConstructor
+@NamedQueries({
+        @NamedQuery(name = "Objectif.findAll", query = "SELECT o FROM Objectif o")
+        , @NamedQuery(name = "Objectif.findObjectifByID", query = "SELECT o FROM Objectif o WHERE o.objectifId = :objectifId")
+        , @NamedQuery(name = "Objectif.findObjectifSortByMostRecent", query = "SELECT o FROM Objectif o order by o.startDate desc")
+        , @NamedQuery(name = "Objectif.countAll", query = "SELECT count(o) FROM Objectif o")
+        , @NamedQuery(name = "Objectif.findObjectifAccomplished", query = "SELECT o FROM Objectif o WHERE o.isAchieved = 1 ")
+})
 public class Objectif implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

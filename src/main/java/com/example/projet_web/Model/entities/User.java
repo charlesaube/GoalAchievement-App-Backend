@@ -4,7 +4,12 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "user")
+@NamedQueries({
+        @NamedQuery(name = "User.findUserBySubstr", query = "SELECT u FROM User u WHERE substring(u.firstName,1, length(:subStr) ) " +
+                "= :subStr and u.coach.coachId = :coachId ")
+})
 public class User implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "userId")

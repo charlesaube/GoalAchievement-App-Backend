@@ -10,6 +10,10 @@ import java.io.Serializable;
 @Table(name = "comment")
 @NoArgsConstructor //Lombok
 @AllArgsConstructor
+@NamedQueries({
+        @NamedQuery(name = "Comment.findAllByObjectif", query = "SELECT c FROM Comment c WHERE c.objectif.objectifId = :ObjectifId")
+        ,@NamedQuery(name = "Comment.findAllByUser", query = "SELECT c FROM Comment c WHERE c.objectif.user.userId = :userId ")
+})
 public class Comment implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
