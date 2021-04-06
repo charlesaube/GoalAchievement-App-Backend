@@ -36,11 +36,11 @@ public class Objectif implements Serializable {
     private java.lang.Byte isAchieved;
 
     @ManyToOne
-    @JoinColumn(name = "categoryId", referencedColumnName = "categoryId")
+    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     private Category category;
 
     @ManyToOne
-    @JoinColumn(name = "userId", referencedColumnName = "userId")
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
 
     public Long getObjectifId() {

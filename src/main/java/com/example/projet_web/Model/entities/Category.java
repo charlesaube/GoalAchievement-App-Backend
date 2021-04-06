@@ -22,10 +22,10 @@ public class Category implements Serializable {
     @Column(name = "categoryId")
     private Long categoryId;
 
-    @Column(name = "categoryName")
+    @Column(name = "category_name")
     private String categoryName;
 
-    @Column(name = "imagePath")
+    @Column(name = "image_path")
     private String imagePath;
 
     public Long getCategoryId() {

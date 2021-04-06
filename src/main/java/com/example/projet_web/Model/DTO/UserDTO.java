@@ -1,39 +1,24 @@
-package com.example.projet_web.Model.entities;
-import javax.persistence.*;
-import java.io.Serializable;
+package com.example.projet_web.Model.DTO;
 
-@Entity
-@Table(name = "user")
-@NamedQueries({
-        @NamedQuery(name = "User.findUserBySubstr", query = "SELECT u FROM User u WHERE substring(u.firstName,1, length(:subStr) ) " +
-                "= :subStr and u.coach.coachId = :coachId ")
-})
-public class User implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Column(name = "user_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDTO {
     private Long userId;
-
-    @Column(name = "first_name")
     private String firstName;
-
-    @Column(name = "last_name")
     private String lastName;
-
-    @Column(name = "email")
     private String email;
-
-    @Column(name = "gender")
     private String gender;
-
-    @Column(name = "password")
     private String password;
+    private Long coachId;
 
-    @ManyToOne
-    @JoinColumn(name = "coach_id", referencedColumnName = "coach_id")
-    private Coach coach;
+    public UserDTO(){};
+    public UserDTO(Long userId, String firstName, String lastName, String email, String gender, String password, Long coachId) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.gender = gender;
+        this.password = password;
+        this.coachId = coachId;
+    }
 
     public Long getUserId() {
         return this.userId;
@@ -83,9 +68,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Coach getCoach() { return this.coach; }
+    public Long getCoachId() {
+        return this.coachId;
+    }
 
-    public void setCoach(Coach coachId) {
-        this.coach = coach;
+    public void setCoachId(Long coachId) {
+        this.coachId = coachId;
     }
 }

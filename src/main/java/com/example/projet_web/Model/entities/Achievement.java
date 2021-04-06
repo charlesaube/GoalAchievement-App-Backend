@@ -19,7 +19,7 @@ public class Achievement implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "achievementId")
+    @Column(name = "achievement_id")
     private Long achievementId;
 
     @Column(name = "title")
@@ -32,11 +32,11 @@ public class Achievement implements Serializable {
     private java.sql.Date date;
 
     @ManyToOne
-    @JoinColumn(name = "userId",referencedColumnName = "userId")
+    @JoinColumn(name = "user_id",referencedColumnName = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "categoryId",referencedColumnName = "categoryId")
+    @JoinColumn(name = "category_id",referencedColumnName = "category_id")
     private Category category;
 
     public Long getAchievementId() {
