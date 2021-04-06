@@ -3,12 +3,14 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "objectif")
 @NoArgsConstructor //Lombok
 @AllArgsConstructor
-public class Objectif {
+public class Objectif implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "objectifId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

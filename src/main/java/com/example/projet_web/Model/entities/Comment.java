@@ -4,12 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "comment")
 @NoArgsConstructor //Lombok
 @AllArgsConstructor
-public class Comment {
+public class Comment implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "commentID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
