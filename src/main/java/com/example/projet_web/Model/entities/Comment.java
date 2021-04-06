@@ -55,7 +55,7 @@ public class Comment implements Serializable {
         this.description = description;
     }
 
-    public Long getObjectif() {
+    public Objectif getObjectif() {
         return this.objectif;
     }
 
@@ -63,7 +63,7 @@ public class Comment implements Serializable {
         this.objectif = objectif;
     }
 
-    public Long getCoach() { return this.coach; }
+    public Coach getCoach() { return this.coach; }
 
     public void setCoach( Coach coach) {
         this.coach = coach;

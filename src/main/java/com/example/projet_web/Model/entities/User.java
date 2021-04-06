@@ -78,9 +78,7 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Long getCoach() {
-        return this.coach;
-    }
+    public Coach getCoach() { return this.coach; }
 
     public void setCoach(Coach coachId) {
         this.coach = coach;

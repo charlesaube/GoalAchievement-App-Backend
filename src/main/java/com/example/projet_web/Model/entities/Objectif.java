@@ -76,7 +76,7 @@ public class Objectif implements Serializable {
         this.isAchieved = isAchieved;
     }
 
-    public Long getCategory() {
+    public Category getCategory() {
         return this.category;
     }
 
@@ -84,7 +84,7 @@ public class Objectif implements Serializable {
         this.category = category;
     }
 
-    public Long getUser() {
+    public User getUser() {
         return this.user;
     }
 
