@@ -7,6 +7,11 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "category")
+@NamedQueries({
+        @NamedQuery(name = "Category.getCategoryById", query = "select c from Category c where c.categoryId = :categoryId")
+        ,@NamedQuery(name = "Category.getAllCategories", query = "select c from Category c")
+
+})
 @NoArgsConstructor //Lombok
 @AllArgsConstructor
 public class Category implements Serializable {
