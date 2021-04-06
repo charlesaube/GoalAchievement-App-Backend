@@ -1,12 +1,18 @@
+package com.example.projet_web.Model.entities;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "objectif")
+@NoArgsConstructor //Lombok
+@AllArgsConstructor
 public class Objectif {
     @Id
     @Column(name = "objectifId")
-    private Integer objectifId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long objectifId;
 
     @Column(name = "objectifName")
     private String objectifName;
@@ -20,17 +26,19 @@ public class Objectif {
     @Column(name = "isAchieved")
     private java.lang.Byte isAchieved;
 
-    @Column(name = "categoryId")
-    private Integer categoryId;
+    @ManyToOne
+    @JoinColumn(name = "categoryId", referencedColumnName = "categoryId")
+    private Category category;
 
-    @Column(name = "userId")
-    private Integer userId;
+    @ManyToOne
+    @JoinColumn(name = "userId", referencedColumnName = "userId")
+    private User user;
 
-    public Integer getObjectifId() {
+    public Long getObjectifId() {
         return this.objectifId;
     }
 
-    public void setObjectifId(Integer objectifId) {
+    public void setObjectifId(Long objectifId) {
         this.objectifId = objectifId;
     }
 
@@ -66,19 +74,19 @@ public class Objectif {
         this.isAchieved = isAchieved;
     }
 
-    public Integer getCategoryId() {
-        return this.categoryId;
+    public Long getCategory() {
+        return this.category;
     }
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public Integer getUserId() {
-        return this.userId;
+    public Long getUser() {
+        return this.user;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

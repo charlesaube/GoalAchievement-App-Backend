@@ -1,4 +1,4 @@
-
+package com.example.projet_web.Model.entities;
 import javax.persistence.*;
 
 @Entity
@@ -6,7 +6,8 @@ import javax.persistence.*;
 public class User {
     @Id
     @Column(name = "userId")
-    private Integer userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
 
     @Column(name = "firstName")
     private String firstName;
@@ -23,14 +24,15 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "coachId")
-    private Integer coachId;
+    @ManyToOne
+    @JoinColumn(name = "coachId", referencedColumnName = "coachId")
+    private Coach coach;
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return this.userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -74,11 +76,11 @@ public class User {
         this.password = password;
     }
 
-    public Integer getCoachId() {
-        return this.coachId;
+    public Long getCoach() {
+        return this.coach;
     }
 
-    public void setCoachId(Integer coachId) {
-        this.coachId = coachId;
+    public void setCoach(Coach coachId) {
+        this.coach = coach;
     }
 }

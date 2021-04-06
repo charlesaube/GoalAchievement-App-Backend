@@ -1,12 +1,19 @@
+package com.example.projet_web.Model.entities;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "comment")
+@NoArgsConstructor //Lombok
+@AllArgsConstructor
 public class Comment {
     @Id
     @Column(name = "commentID")
-    private Integer commentId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long commentId;
 
     @Column(name = "title")
     private String title;
@@ -14,17 +21,19 @@ public class Comment {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "objectifId")
-    private Integer objectifId;
+    @ManyToOne
+    @JoinColumn(name = "objectifId", referencedColumnName = "objectifId")
+    private Objectif objectif;
 
-    @Column(name = "coachId")
-    private Integer coachId;
+    @ManyToOne
+    @JoinColumn(name = "coachId", referencedColumnName = "coachId")
+    private Coach coach;
 
-    public Integer getCommentId() {
+    public Long getCommentId() {
         return this.commentId;
     }
 
-    public void setCommentId(Integer commentId) {
+    public void setCommentId(Long commentId) {
         this.commentId = commentId;
     }
 
@@ -44,19 +53,17 @@ public class Comment {
         this.description = description;
     }
 
-    public Integer getObjectifId() {
-        return this.objectifId;
+    public Long getObjectif() {
+        return this.objectif;
     }
 
-    public void setObjectifId(Integer objectifId) {
-        this.objectifId = objectifId;
+    public void setObjectif(Objectif objectif) {
+        this.objectif = objectif;
     }
 
-    public Integer getCoachId() {
-        return this.coachId;
-    }
+    public Long getCoach() { return this.coach; }
 
-    public void setCoachId(Integer coachId) {
-        this.coachId = coachId;
+    public void setCoach( Coach coach) {
+        this.coach = coach;
     }
 }
