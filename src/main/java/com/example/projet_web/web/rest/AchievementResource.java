@@ -30,4 +30,6 @@ public class AchievementResource {
         IEntityMapper<Achievement , AchievementDTO> mapper = new AchievementMapper();
         return this.achievementService.readAll().stream().map(mapper::entityToDTO).collect(Collectors.toList());
     }
+
+
 }

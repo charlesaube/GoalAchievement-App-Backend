@@ -36,10 +36,9 @@ public class CategoryResource {
     @GetMapping("/{id}")
     public ResponseEntity<?> getCategoryById(@PathVariable long id) {
         Optional<Category> category = categoryService.readOne(id);
-        System.out.println(category.get().getCategoryName());
         Optional<CategoryDTO> categoryDTO = category.map(categoryMapper::entityToDTO);
         return categoryDTO.isPresent() ? new ResponseEntity<>(categoryDTO.get(),
-                HttpStatus.OK) : new ResponseEntity<>("Customer Id not found", HttpStatus.NOT_FOUND);
+                HttpStatus.OK) : new ResponseEntity<>("Category Id not found", HttpStatus.NOT_FOUND);
 
     }
 

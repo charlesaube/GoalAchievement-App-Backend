@@ -35,6 +35,7 @@ public class UserResource {
 
     @GetMapping ("/coach/{coachId}")
     public List<UserDTO> getUserByCoachId(@PathVariable long coachId) {
+        IEntityMapper<User, UserDTO> mapper = new UserMapper();
         List<UserDTO> userDTO = userService.findUserByCoachId(coachId).stream().map(mapper::entityToDTO).collect(Collectors.toList());
         return userDTO;
     }

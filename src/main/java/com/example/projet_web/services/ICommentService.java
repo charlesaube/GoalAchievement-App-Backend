@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface ICommentService {
     Optional<Comment> readOne(long Id);
 
-    List<Comment> findAllByObjectifId(Long ObjectifId);
-    List<Comment> findAllByUserId(Long UserId);
-    List<Comment> findAllByCoachId(Long CoachId);
+    List<Comment> findAllByObjectifId(Long objectifId);
+    List<Comment> findAllByUserId(Long userId);
+    List<Comment> findAllByCoachId(Long coachId);
 }

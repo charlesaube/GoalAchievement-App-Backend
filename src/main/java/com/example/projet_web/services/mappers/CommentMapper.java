@@ -12,8 +12,8 @@ public class CommentMapper implements IEntityMapper<Comment, CommentDTO>{
                 comment.getCommentId(),
                 comment.getTitle(),
                 comment.getDescription(),
-                comment.getCoach().getCoachId(),
-                comment.getObjectif().getObjectifId()
+                comment.getObjectif().getObjectifId(),
+                comment.getCoach().getCoachId()
         );
     }
 }
