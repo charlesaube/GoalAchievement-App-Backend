@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface IUserRepository extends JpaRepository<User,Long> {
     List<User> findUserBySubstr(String subStr);
-
+    List<User> findUserByCoachId(Long coachId);
 }

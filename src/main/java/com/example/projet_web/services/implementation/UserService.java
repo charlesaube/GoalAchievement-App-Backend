@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import javax.swing.plaf.ActionMapUIResource;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserService implements IUserService {
     private final IUserRepository userRepository;
@@ -18,7 +20,19 @@ public class UserService implements IUserService {
 
 
     @Override
+    public Optional<User> readOne(long Id) {
+        return userRepository.findById(Id);
+    }
+
+    @Override
     public List<User> findUserBySubstr(String subStr) {
         return userRepository.findUserBySubstr(subStr) ;
     }
+
+    @Override
+    public List<User> findUserByCoachId(Long coachId) {
+        return userRepository.findUserByCoachId(coachId);
+    }
+
+
 }

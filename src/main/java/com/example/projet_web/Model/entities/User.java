@@ -7,6 +7,7 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(name = "User.findUserBySubstr", query = "SELECT u FROM User u WHERE substring(u.firstName,1, length(:subStr) ) " +
                 "= :subStr and u.coach.coachId = :coachId ")
+        ,@NamedQuery(name = "User.findUserByCoachId", query = "SELECT u FROM User u WHERE u.coach.coachId = :coachId")
 })
 public class User implements Serializable {
 
