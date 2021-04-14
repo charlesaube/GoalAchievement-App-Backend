@@ -39,11 +39,10 @@ public class UserResource {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Void> save(@RequestBody @Valid UserDTO user) {
+    public ResponseEntity<UserDTO> save(@RequestBody @Valid UserDTO user) {
         User saved = this.userService.save(user);
-        return ResponseEntity
-                .created(URI.create(saved.getUserId().toString()))
-                .build();
+        IEntityMapper<User, UserDTO> mapper = new UserMapper();
+        return new ResponseEntity<UserDTO>(mapper.entityToDTO(saved), HttpStatus.OK);
     }
 
 

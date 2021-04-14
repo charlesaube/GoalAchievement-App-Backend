@@ -54,6 +54,7 @@ public class UserService implements IUserService {
             user.setPassword(userDTO.getPassword());
             user.setGender(userDTO.getGender());
             user.setCoach(coach);
+            System.out.println(userDTO.getLastName());
         return userRepository.save(user);
     }
 
