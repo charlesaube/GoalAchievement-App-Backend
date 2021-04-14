@@ -86,7 +86,7 @@ public class User implements Serializable {
 
     public Coach getCoach() { return this.coach; }
 
-    public void setCoach(Coach coachId) {
+    public void setCoach(Coach coach) {
         this.coach = coach;
     }
 }

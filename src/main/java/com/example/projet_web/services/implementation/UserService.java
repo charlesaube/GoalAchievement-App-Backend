@@ -48,14 +48,12 @@ public class UserService implements IUserService {
 
             Coach coach = coachService.readOne(userDTO.getCoachId()).get();
             User user = new User();
-            user.setUserId(userDTO.getUserId());
             user.setFirstName(userDTO.getFirstName());
             user.setLastName(userDTO.getLastName());
             user.setEmail(userDTO.getEmail());
             user.setPassword(userDTO.getPassword());
             user.setGender(userDTO.getGender());
             user.setCoach(coach);
-
         return userRepository.save(user);
     }
 
