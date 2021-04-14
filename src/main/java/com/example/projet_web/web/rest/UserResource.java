@@ -9,14 +9,12 @@ import com.example.projet_web.services.mappers.IEntityMapper;
 import com.example.projet_web.services.mappers.UserMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("api/user")
@@ -39,6 +37,15 @@ public class UserResource {
         List<UserDTO> userDTO = userService.findUserByCoachId(coachId).stream().map(mapper::entityToDTO).collect(Collectors.toList());
         return userDTO;
     }
+
+    @PostMapping("/add")
+    public ResponseEntity<Void> save(@RequestBody @Valid UserDTO user) {
+        User saved = this.userService.save(user);
+        return ResponseEntity
+                .created(URI.create(saved.getUserId().toString()))
+                .build();
+    }
+
 
 
 
