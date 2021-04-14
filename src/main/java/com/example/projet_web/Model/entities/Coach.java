@@ -20,13 +20,14 @@ public class Coach implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "coachId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "coach_id")
     private Long coachId;
 
-    @Column(name = "firstName")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "email")

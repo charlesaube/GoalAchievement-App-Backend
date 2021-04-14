@@ -19,7 +19,7 @@ import java.io.Serializable;
 public class Comment implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "commentID")
+    @Column(name = "comment_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;
 
@@ -30,11 +30,11 @@ public class Comment implements Serializable {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "objectifId", referencedColumnName = "objectifId")
+    @JoinColumn(name = "objectif_id", referencedColumnName = "objectif_id")
     private Objectif objectif;
 
     @ManyToOne
-    @JoinColumn(name = "coachId", referencedColumnName = "coachId")
+    @JoinColumn(name = "coach_id", referencedColumnName = "coach_id")
     private Coach coach;
 
     public Long getCommentId() {

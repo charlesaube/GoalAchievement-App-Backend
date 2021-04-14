@@ -8,8 +8,8 @@ import java.io.Serializable;
 @Entity
 @Table(name = "category")
 @NamedQueries({
-        @NamedQuery(name = "Category.getCategoryById", query = "select c from Category c where c.categoryId = :categoryId")
-        ,@NamedQuery(name = "Category.getAllCategories", query = "select c from Category c")
+        @NamedQuery(name = "Category.findCategoryById", query = "select c from Category c where c.categoryId = :categoryId")
+        ,@NamedQuery(name = "Category.findAllCategories", query = "select c from Category c")
 
 })
 @NoArgsConstructor //Lombok
@@ -19,7 +19,8 @@ public class Category implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "categoryId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "category_id")
     private Long categoryId;
 
     @Column(name = "category_name")

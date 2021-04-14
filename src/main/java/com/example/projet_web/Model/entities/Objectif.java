@@ -19,20 +19,20 @@ import java.io.Serializable;
 public class Objectif implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "objectifId")
+    @Column(name = "objectif_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long objectifId;
 
-    @Column(name = "objectifName")
+    @Column(name = "objectif_name")
     private String objectifName;
 
-    @Column(name = "startDate")
+    @Column(name = "start_date")
     private java.sql.Date startDate;
 
-    @Column(name = "endDate")
+    @Column(name = "end_date")
     private java.sql.Date endDate;
 
-    @Column(name = "isAchieved")
+    @Column(name = "is_achieved")
     private java.lang.Byte isAchieved;
 
     @ManyToOne
