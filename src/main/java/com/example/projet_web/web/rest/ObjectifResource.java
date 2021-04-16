@@ -12,11 +12,9 @@ import com.example.projet_web.services.mappers.ObjectifMapper;
 import com.example.projet_web.services.mappers.UserMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -63,6 +61,13 @@ public class ObjectifResource {
     @GetMapping("/count")
     public Long countAll(){
         return objectifService.countAll();
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<ObjectifDTO> save(@RequestBody @Valid ObjectifDTO objectif) {
+        Objectif saved = this.objectifService.save(objectif);
+        IEntityMapper<Objectif, ObjectifDTO> mapper = new ObjectifMapper();
+        return new ResponseEntity<ObjectifDTO>(mapper.entityToDTO(saved), HttpStatus.OK);
     }
 
 

@@ -1,5 +1,6 @@
 package com.example.projet_web.services;
 
+import com.example.projet_web.Model.DTO.ObjectifDTO;
 import com.example.projet_web.Model.entities.Objectif;
 
 import java.util.List;
@@ -12,4 +13,5 @@ public interface IObjectifService {
     List<Objectif> findObjectifSortByMostRecent();
     Long countAll();
     List<Objectif> findObjectifAccomplished();
+    Objectif save(ObjectifDTO objectifDTO);
 }

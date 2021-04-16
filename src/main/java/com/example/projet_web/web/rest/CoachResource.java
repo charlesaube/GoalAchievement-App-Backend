@@ -9,11 +9,11 @@ import com.example.projet_web.services.implementation.CoachService;
 import com.example.projet_web.services.mappers.CoachMapper;
 import com.example.projet_web.services.mappers.IEntityMapper;
 import com.example.projet_web.services.mappers.ObjectifMapper;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,4 +39,13 @@ public class CoachResource {
     public CoachDTO getUserById(@PathVariable long id){
         return coachService.readOne(id).map(mapper::entityToDTO).get();
     }
+
+
+    @PostMapping("/add")
+    public ResponseEntity<CoachDTO> save(@RequestBody @Valid CoachDTO coach) {
+        Coach saved = this.coachService.save(coach);
+        IEntityMapper<Coach, CoachDTO> mapper = new CoachMapper();
+        return new ResponseEntity<CoachDTO>(mapper.entityToDTO(saved), HttpStatus.OK);
+    }
+
 }

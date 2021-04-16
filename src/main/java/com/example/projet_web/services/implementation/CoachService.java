@@ -1,5 +1,6 @@
 package com.example.projet_web.services.implementation;
 
+import com.example.projet_web.Model.DTO.CoachDTO;
 import com.example.projet_web.Model.entities.Coach;
 import com.example.projet_web.repositories.interfaces.ICoachRepository;
 import com.example.projet_web.services.ICoachService;
@@ -33,5 +34,18 @@ public class CoachService implements ICoachService {
 
     public List<Coach> getAllCoachByFirstNameSubString(String subStr){
         return  coachRepository.findAllCoachByFirstNameSubString(subStr);
+    }
+
+    @Override
+    public Coach save(CoachDTO coachDTO) {
+        Coach coach = new Coach();
+
+        coach.setDescription(coachDTO.getDescription());
+        coach.setEmail(coachDTO.getEmail());
+        coach.setGender(coachDTO.getGender());
+        coach.setPassword(coachDTO.getPassword());
+        coach.setFirstName(coachDTO.getFirstName());
+        coach.setLastName(coachDTO.getLastName());
+        return coachRepository.save(coach);
     }
 }

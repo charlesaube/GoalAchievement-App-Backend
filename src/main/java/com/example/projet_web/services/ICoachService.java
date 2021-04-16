@@ -1,5 +1,6 @@
 package com.example.projet_web.services;
 
+import com.example.projet_web.Model.DTO.CoachDTO;
 import com.example.projet_web.Model.entities.Achievement;
 import com.example.projet_web.Model.entities.Coach;
 
@@ -10,10 +11,8 @@ public interface ICoachService {
     Coach create(Coach coach);
 
     Optional<Coach> readOne(Long coachId);
-
     List<Coach> readAll();
-
     void delete(Long coachId);
-
     List<Coach> getAllCoachByFirstNameSubString(String subStr);
+    Coach save(CoachDTO coachDTO);
 }

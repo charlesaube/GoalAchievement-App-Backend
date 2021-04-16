@@ -10,11 +10,9 @@ import com.example.projet_web.services.mappers.IEntityMapper;
 import com.example.projet_web.services.mappers.ObjectifMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -47,6 +45,13 @@ public class CommentResource {
 
         IEntityMapper<Comment, CommentDTO> mapper = new CommentMapper();
         return commentService.findAllByCoachId(id).stream().map(mapper::entityToDTO).collect(Collectors.toList());
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<CommentDTO> save (@RequestBody @Valid CommentDTO comment){
+        Comment saved = this.commentService.save(comment);
+        IEntityMapper<Comment, CommentDTO> mapper = new CommentMapper();
+        return new ResponseEntity<CommentDTO>(mapper.entityToDTO(saved), HttpStatus.OK);
     }
 
 }

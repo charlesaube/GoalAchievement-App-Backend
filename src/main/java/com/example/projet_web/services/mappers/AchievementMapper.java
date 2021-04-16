@@ -9,7 +9,8 @@ public class AchievementMapper implements IEntityMapper<Achievement,AchievementD
     @Override
     public AchievementDTO entityToDTO(Achievement achievement) {
         return new AchievementDTO(achievement.getAchievementId(),
-                achievement.getTitle(), achievement.getDescription(),
+                achievement.getTitle(),
+                achievement.getDescription(),
                 achievement.getDate(),
                 achievement.getUser().getUserId(),
                 achievement.getCategory().getCategoryId());

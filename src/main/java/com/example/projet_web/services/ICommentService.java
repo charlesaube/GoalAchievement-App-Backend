@@ -1,5 +1,6 @@
 package com.example.projet_web.services;
 
+import com.example.projet_web.Model.DTO.CommentDTO;
 import com.example.projet_web.Model.entities.Comment;
 import com.example.projet_web.Model.entities.Objectif;
 
@@ -12,4 +13,5 @@ public interface ICommentService {
     List<Comment> findAllByObjectifId(Long objectifId);
     List<Comment> findAllByUserId(Long userId);
     List<Comment> findAllByCoachId(Long coachId);
+    Comment save(CommentDTO commentDTO);
 }
