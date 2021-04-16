@@ -14,4 +14,5 @@ public interface ICommentService {
     List<Comment> findAllByUserId(Long userId);
     List<Comment> findAllByCoachId(Long coachId);
     Comment save(CommentDTO commentDTO);
+    void delete(Long commentId);
 }

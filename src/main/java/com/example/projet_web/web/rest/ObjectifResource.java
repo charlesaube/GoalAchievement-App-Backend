@@ -70,6 +70,12 @@ public class ObjectifResource {
         return new ResponseEntity<ObjectifDTO>(mapper.entityToDTO(saved), HttpStatus.OK);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        this.objectifService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
 
 }

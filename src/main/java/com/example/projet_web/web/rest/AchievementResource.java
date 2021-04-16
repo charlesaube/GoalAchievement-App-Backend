@@ -42,6 +42,10 @@ public class AchievementResource {
         return new ResponseEntity<AchievementDTO>(mapper.entityToDTO(saved), HttpStatus.OK);
     }
 
-
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        this.achievementService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }

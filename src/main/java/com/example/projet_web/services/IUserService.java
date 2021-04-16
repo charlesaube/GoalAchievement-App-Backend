@@ -13,4 +13,5 @@ public interface IUserService {
     List<User> findUserBySubstr(String subStr);
     List<User> findUserByCoachId(Long coachId);
     User save(UserDTO user);
+    void delete(Long userId);
 }

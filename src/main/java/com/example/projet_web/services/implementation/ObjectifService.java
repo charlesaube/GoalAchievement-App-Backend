@@ -58,6 +58,11 @@ public class ObjectifService implements IObjectifService {
     }
 
     @Override
+    public void delete(Long objectifId) {
+        objectifRepository.deleteById(objectifId);
+    }
+
+    @Override
     public Objectif save(ObjectifDTO objectifDTO) {
         Category category = categoryService.readOne(objectifDTO.getCategoryId()).get();
         User user = userService.readOne(objectifDTO.getUserId()).get();

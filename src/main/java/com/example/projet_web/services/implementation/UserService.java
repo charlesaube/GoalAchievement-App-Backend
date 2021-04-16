@@ -44,6 +44,11 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public void delete(Long userId) {
+        userRepository.deleteById(userId);
+    }
+
+    @Override
     public User save(UserDTO userDTO) {
 
             Coach coach = coachService.readOne(userDTO.getCoachId()).get();

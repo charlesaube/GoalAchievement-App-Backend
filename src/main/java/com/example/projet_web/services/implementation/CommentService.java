@@ -49,6 +49,11 @@ public class CommentService implements ICommentService {
     }
 
     @Override
+    public void delete(Long commentId) {
+        commentRepository.deleteById(commentId);
+    }
+
+    @Override
     public Comment save(CommentDTO commentDTO) {
         Coach coach = coachService.readOne(commentDTO.getCoachId()).get();
         Objectif objectif = objectifService.readOne(commentDTO.getObjectifId()).get();

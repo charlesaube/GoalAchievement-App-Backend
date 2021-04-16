@@ -54,4 +54,9 @@ public class CommentResource {
         return new ResponseEntity<CommentDTO>(mapper.entityToDTO(saved), HttpStatus.OK);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        this.commentService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

@@ -14,4 +14,5 @@ public interface IObjectifService {
     Long countAll();
     List<Objectif> findObjectifAccomplished();
     Objectif save(ObjectifDTO objectifDTO);
+    void delete(Long objectifId);
 }

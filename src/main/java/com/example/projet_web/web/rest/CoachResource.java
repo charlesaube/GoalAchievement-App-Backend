@@ -48,4 +48,10 @@ public class CoachResource {
         return new ResponseEntity<CoachDTO>(mapper.entityToDTO(saved), HttpStatus.OK);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        this.coachService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

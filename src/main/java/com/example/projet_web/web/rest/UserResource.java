@@ -45,6 +45,12 @@ public class UserResource {
         return new ResponseEntity<UserDTO>(mapper.entityToDTO(saved), HttpStatus.OK);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        this.userService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
 
 
