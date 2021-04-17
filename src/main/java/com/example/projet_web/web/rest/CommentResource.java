@@ -59,4 +59,11 @@ public class CommentResource {
         this.commentService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/edit")
+    public ResponseEntity<Void> update(@RequestBody @Valid CommentDTO comment) {
+        this.commentService.update(comment);
+        return ResponseEntity.noContent().build();
+    }
+
 }

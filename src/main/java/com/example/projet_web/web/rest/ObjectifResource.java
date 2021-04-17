@@ -75,6 +75,11 @@ public class ObjectifResource {
         this.objectifService.delete(id);
         return ResponseEntity.noContent().build();
     }
+    @PutMapping("/edit")
+    public ResponseEntity<Void> update(@RequestBody @Valid ObjectifDTO objectif) {
+        this.objectifService.update(objectif);
+        return ResponseEntity.noContent().build();
+    }
 
 
 

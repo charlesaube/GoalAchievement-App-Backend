@@ -2,6 +2,7 @@ package com.example.projet_web.services.implementation;
 
 import com.example.projet_web.Model.DTO.ObjectifDTO;
 import com.example.projet_web.Model.entities.Category;
+import com.example.projet_web.Model.entities.Coach;
 import com.example.projet_web.Model.entities.Objectif;
 import com.example.projet_web.Model.entities.User;
 import com.example.projet_web.repositories.interfaces.IObjectifRepository;
@@ -63,9 +64,29 @@ public class ObjectifService implements IObjectifService {
     }
 
     @Override
+    public void update(ObjectifDTO objectifDTO) {
+        Optional<Objectif> storedOptional = readOne(objectifDTO.getObjectifId());
+
+        if (storedOptional.isPresent()) {
+            Objectif stored = storedOptional.get();
+
+            Category category = categoryService.readOne(objectifDTO.getCategoryId()).get();
+            User user = userService.readOne(objectifDTO.getUserId()).get();
+            stored.setObjectifName(objectifDTO.getObjectifName());
+            stored.setCategory(category);
+            stored.setEndDate(objectifDTO.getEndDate());
+            stored.setStartDate(objectifDTO.getStartDate());
+            stored.setIsAchieved(objectifDTO.getIsAchieved());
+            stored.setUser(user);
+            objectifRepository.save(stored);
+        }
+    }
+
+    @Override
     public Objectif save(ObjectifDTO objectifDTO) {
         Category category = categoryService.readOne(objectifDTO.getCategoryId()).get();
         User user = userService.readOne(objectifDTO.getUserId()).get();
+
         Objectif objectif = new Objectif();
         objectif.setObjectifName(objectifDTO.getObjectifName());
         objectif.setCategory(category);

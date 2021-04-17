@@ -1,6 +1,7 @@
 package com.example.projet_web.web.rest;
 
 import com.example.projet_web.Model.DTO.CoachDTO;
+import com.example.projet_web.Model.DTO.CommentDTO;
 import com.example.projet_web.Model.DTO.ObjectifDTO;
 import com.example.projet_web.Model.DTO.UserDTO;
 import com.example.projet_web.Model.entities.Coach;
@@ -53,5 +54,12 @@ public class CoachResource {
         this.coachService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/edit")
+    public ResponseEntity<Void> update(@RequestBody @Valid CoachDTO coach) {
+        this.coachService.update(coach);
+        return ResponseEntity.noContent().build();
+    }
+
 
 }

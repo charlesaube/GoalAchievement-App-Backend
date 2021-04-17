@@ -3,6 +3,7 @@ package com.example.projet_web.services.implementation;
 import com.example.projet_web.Model.DTO.AchievementDTO;
 import com.example.projet_web.Model.entities.Achievement;
 import com.example.projet_web.Model.entities.Category;
+import com.example.projet_web.Model.entities.Coach;
 import com.example.projet_web.Model.entities.User;
 import com.example.projet_web.repositories.interfaces.IAchievementRepository;
 import com.example.projet_web.services.IAchievementService;
@@ -69,5 +70,24 @@ public class AchievementService implements IAchievementService {
         achievement.setUser(user);
 
         return achievementRepository.save(achievement);
+    }
+
+    @Override
+    public void update(AchievementDTO achievementDTO) {
+        Optional<Achievement> storedOptional = readOne(achievementDTO.getAchievementId());
+
+        if (storedOptional.isPresent()) {
+            Achievement stored = storedOptional.get();
+
+            Category category = categoryService.readOne(achievementDTO.getCategoryId()).get();
+            User user = userService.readOne(achievementDTO.getUserId()).get();
+
+            stored.setCategory(category);
+            stored.setDescription(achievementDTO.getDescription());
+            stored.setDate(achievementDTO.getDate());
+            stored.setTitle(achievementDTO.getTitle());
+            stored.setUser(user);
+            achievementRepository.save(stored);
+        }
     }
 }

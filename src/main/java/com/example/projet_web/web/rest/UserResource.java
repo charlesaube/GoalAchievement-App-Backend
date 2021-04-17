@@ -51,6 +51,15 @@ public class UserResource {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/edit")
+    public ResponseEntity<Void> update(@RequestBody @Valid UserDTO user) {
+        this.userService.update(user);
+        return ResponseEntity.noContent().build();
+    }
+
+
+
+
 
 
 

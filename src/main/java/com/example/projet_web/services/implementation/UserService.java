@@ -49,6 +49,25 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public void update(UserDTO userDTO) {
+        Optional<User> storedOptional = readOne(userDTO.getUserId());
+        if (storedOptional.isPresent()) {
+            User stored = storedOptional.get();
+
+
+            Coach coach = coachService.readOne(userDTO.getCoachId()).get();
+            stored.setFirstName(userDTO.getFirstName());
+            stored.setLastName(userDTO.getLastName());
+            stored.setEmail(userDTO.getEmail());
+            stored.setPassword(userDTO.getPassword());
+            stored.setGender(userDTO.getGender());
+            stored.setCoach(coach);
+            userRepository.save(stored);
+        }
+
+    }
+
+    @Override
     public User save(UserDTO userDTO) {
 
             Coach coach = coachService.readOne(userDTO.getCoachId()).get();

@@ -1,6 +1,7 @@
 package com.example.projet_web.services;
 
 import com.example.projet_web.Model.DTO.ObjectifDTO;
+import com.example.projet_web.Model.DTO.UserDTO;
 import com.example.projet_web.Model.entities.Objectif;
 
 import java.util.List;
@@ -15,4 +16,5 @@ public interface IObjectifService {
     List<Objectif> findObjectifAccomplished();
     Objectif save(ObjectifDTO objectifDTO);
     void delete(Long objectifId);
+    void update(ObjectifDTO objectifDTO);
 }

@@ -21,4 +21,6 @@ public interface IAchievementService {
 
     Achievement save(AchievementDTO achievementDTO);
 
+    void update(AchievementDTO achievementDTO);
+
 }

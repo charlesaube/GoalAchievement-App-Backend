@@ -1,6 +1,7 @@
 package com.example.projet_web.web.rest;
 
 import com.example.projet_web.Model.DTO.AchievementDTO;
+import com.example.projet_web.Model.DTO.CoachDTO;
 import com.example.projet_web.Model.DTO.ObjectifDTO;
 import com.example.projet_web.Model.entities.Achievement;
 import com.example.projet_web.Model.entities.Objectif;
@@ -45,6 +46,12 @@ public class AchievementResource {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         this.achievementService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/edit")
+    public ResponseEntity<Void> update(@RequestBody @Valid AchievementDTO achievement) {
+        this.achievementService.update(achievement);
         return ResponseEntity.noContent().build();
     }
 

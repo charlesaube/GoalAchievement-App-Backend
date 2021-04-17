@@ -1,7 +1,10 @@
 package com.example.projet_web.services.implementation;
 
+import antlr.CommonASTWithHiddenTokens;
 import com.example.projet_web.Model.DTO.CoachDTO;
 import com.example.projet_web.Model.entities.Coach;
+import com.example.projet_web.Model.entities.Comment;
+import com.example.projet_web.Model.entities.Objectif;
 import com.example.projet_web.repositories.interfaces.ICoachRepository;
 import com.example.projet_web.services.ICoachService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +50,22 @@ public class CoachService implements ICoachService {
         coach.setFirstName(coachDTO.getFirstName());
         coach.setLastName(coachDTO.getLastName());
         return coachRepository.save(coach);
+    }
+
+    @Override
+    public void update(CoachDTO coachDTO) {
+        Optional<Coach> storedOptional = readOne(coachDTO.getCoachId());
+
+        if (storedOptional.isPresent()) {
+            Coach stored = storedOptional.get();
+
+            stored.setDescription(coachDTO.getDescription());
+            stored.setEmail(coachDTO.getEmail());
+            stored.setGender(coachDTO.getGender());
+            stored.setPassword(coachDTO.getPassword());
+            stored.setFirstName(coachDTO.getFirstName());
+            stored.setLastName(coachDTO.getLastName());
+            coachRepository.save(stored);
+        }
     }
 }

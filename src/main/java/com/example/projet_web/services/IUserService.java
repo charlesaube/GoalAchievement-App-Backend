@@ -14,4 +14,5 @@ public interface IUserService {
     List<User> findUserByCoachId(Long coachId);
     User save(UserDTO user);
     void delete(Long userId);
+    void update(UserDTO userDTO);
 }

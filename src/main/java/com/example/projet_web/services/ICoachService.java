@@ -15,4 +15,5 @@ public interface ICoachService {
     void delete(Long coachId);
     List<Coach> getAllCoachByFirstNameSubString(String subStr);
     Coach save(CoachDTO coachDTO);
+    void update(CoachDTO coachDTO);
 }

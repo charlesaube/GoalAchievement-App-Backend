@@ -1,9 +1,7 @@
 package com.example.projet_web.services.implementation;
 
 import com.example.projet_web.Model.DTO.CommentDTO;
-import com.example.projet_web.Model.entities.Coach;
-import com.example.projet_web.Model.entities.Comment;
-import com.example.projet_web.Model.entities.Objectif;
+import com.example.projet_web.Model.entities.*;
 import com.example.projet_web.repositories.interfaces.ICommentRepository;
 import com.example.projet_web.services.ICoachService;
 import com.example.projet_web.services.ICommentService;
@@ -51,6 +49,24 @@ public class CommentService implements ICommentService {
     @Override
     public void delete(Long commentId) {
         commentRepository.deleteById(commentId);
+    }
+
+    @Override
+    public void update(CommentDTO commentDTO) {
+        Optional<Comment> storedOptional = readOne(commentDTO.getCommentId());
+
+        if (storedOptional.isPresent()) {
+            Comment stored = storedOptional.get();
+
+            Coach coach = coachService.readOne(commentDTO.getCoachId()).get();
+            Objectif objectif = objectifService.readOne(commentDTO.getObjectifId()).get();
+
+            stored.setCoach(coach);
+            stored.setDescription(commentDTO.getDescription());
+            stored.setObjectif(objectif);
+            stored.setTitle(commentDTO.getTitle());
+            commentRepository.save(stored);
+        }
     }
 
     @Override
