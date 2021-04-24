@@ -1,21 +1,15 @@
 package com.example.projet_web.web.rest;
 
-import com.example.projet_web.Model.DTO.AchievementDTO;
-import com.example.projet_web.Model.DTO.CategoryDTO;
 import com.example.projet_web.Model.DTO.UserDTO;
-import com.example.projet_web.Model.entities.Achievement;
-import com.example.projet_web.Model.entities.Category;
 import com.example.projet_web.Model.entities.User;
 import com.example.projet_web.services.implementation.UserService;
-import com.example.projet_web.services.mappers.AchievementMapper;
 import com.example.projet_web.services.mappers.IEntityMapper;
 import com.example.projet_web.services.mappers.UserMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.net.URI;
+
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 
@@ -55,6 +49,18 @@ public class UserResource {
         User saved = this.userService.save(user);
         IEntityMapper<User, UserDTO> mapper = new UserMapper();
         return new ResponseEntity<UserDTO>(mapper.entityToDTO(saved), HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @PostMapping("/authenticate")
+    public UserDTO authenticate(@RequestBody @Valid UserDTO userDTO ) {
+        for( User user: this.userService.readAll()){
+            if ( user.getEmail() == userDTO.getEmail() && user.getPassword() == userDTO.getPassword() )
+            {
+                return userDTO;
+            }
+        }
+        return userDTO;
     }
 
     @DeleteMapping("/delete/{id}")
