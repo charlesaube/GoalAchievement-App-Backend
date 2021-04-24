@@ -67,8 +67,7 @@ public class ObjectifResource {
     @PostMapping("/add")
     public ResponseEntity<ObjectifDTO> save(@RequestBody @Valid ObjectifDTO objectif) {
         Objectif saved = this.objectifService.save(objectif);
-        IEntityMapper<Objectif, ObjectifDTO> mapper = new ObjectifMapper();
-        return new ResponseEntity<ObjectifDTO>(mapper.entityToDTO(saved), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.entityToDTO(saved), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -77,9 +76,9 @@ public class ObjectifResource {
         return ResponseEntity.noContent().build();
     }
     @PutMapping("/edit")
-    public ResponseEntity<Void> update(@RequestBody @Valid ObjectifDTO objectif) {
-        this.objectifService.update(objectif);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<ObjectifDTO> update(@RequestBody @Valid ObjectifDTO objectif) {
+        Objectif updated = this.objectifService.update(objectif);
+        return new ResponseEntity<>(mapper.entityToDTO(updated), HttpStatus.OK);
     }
 
 

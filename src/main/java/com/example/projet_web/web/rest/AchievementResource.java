@@ -40,8 +40,7 @@ public class AchievementResource {
     @PostMapping("/add")
     public ResponseEntity<AchievementDTO> save(@RequestBody @Valid AchievementDTO achievement) {
         Achievement saved = this.achievementService.save(achievement);
-        IEntityMapper<Achievement, AchievementDTO> mapper = new AchievementMapper();
-        return new ResponseEntity<AchievementDTO>(mapper.entityToDTO(saved), HttpStatus.OK);
+        return new ResponseEntity<>(achievementMapper.entityToDTO(saved), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -51,9 +50,9 @@ public class AchievementResource {
     }
 
     @PutMapping("/edit")
-    public ResponseEntity<Void> update(@RequestBody @Valid AchievementDTO achievement) {
-        this.achievementService.update(achievement);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<AchievementDTO> update(@RequestBody @Valid AchievementDTO achievement) {
+        Achievement updated = this.achievementService.update(achievement);
+        return new ResponseEntity<>(achievementMapper.entityToDTO(updated), HttpStatus.OK);
     }
 
 }

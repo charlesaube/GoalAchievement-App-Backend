@@ -45,8 +45,7 @@ public class CoachResource {
     @PostMapping("/add")
     public ResponseEntity<CoachDTO> save(@RequestBody @Valid CoachDTO coach) {
         Coach saved = this.coachService.save(coach);
-        IEntityMapper<Coach, CoachDTO> mapper = new CoachMapper();
-        return new ResponseEntity<CoachDTO>(mapper.entityToDTO(saved), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.entityToDTO(saved), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -56,9 +55,9 @@ public class CoachResource {
     }
 
     @PutMapping("/edit")
-    public ResponseEntity<Void> update(@RequestBody @Valid CoachDTO coach) {
-        this.coachService.update(coach);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<CoachDTO> update(@RequestBody @Valid CoachDTO coach) {
+        Coach updated = this.coachService.update(coach);
+        return new ResponseEntity<>(mapper.entityToDTO(updated), HttpStatus.OK);
     }
 
 

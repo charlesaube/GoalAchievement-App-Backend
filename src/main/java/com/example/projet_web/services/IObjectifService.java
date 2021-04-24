@@ -16,5 +16,5 @@ public interface IObjectifService {
     List<Objectif> findObjectifAccomplished();
     Objectif save(ObjectifDTO objectifDTO);
     void delete(Long objectifId);
-    void update(ObjectifDTO objectifDTO);
+    Objectif update(ObjectifDTO objectifDTO);
 }

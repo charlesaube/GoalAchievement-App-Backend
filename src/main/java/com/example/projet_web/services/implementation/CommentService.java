@@ -52,7 +52,7 @@ public class CommentService implements ICommentService {
     }
 
     @Override
-    public void update(CommentDTO commentDTO) {
+    public Comment update(CommentDTO commentDTO) {
         Optional<Comment> storedOptional = readOne(commentDTO.getCommentId());
 
         if (storedOptional.isPresent()) {
@@ -65,8 +65,9 @@ public class CommentService implements ICommentService {
             stored.setDescription(commentDTO.getDescription());
             stored.setObjectif(objectif);
             stored.setTitle(commentDTO.getTitle());
-            commentRepository.save(stored);
+            return commentRepository.save(stored);
         }
+        return null;
     }
 
     @Override

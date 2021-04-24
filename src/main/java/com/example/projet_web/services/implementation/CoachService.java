@@ -53,7 +53,7 @@ public class CoachService implements ICoachService {
     }
 
     @Override
-    public void update(CoachDTO coachDTO) {
+    public Coach update(CoachDTO coachDTO) {
         Optional<Coach> storedOptional = readOne(coachDTO.getCoachId());
 
         if (storedOptional.isPresent()) {
@@ -65,7 +65,9 @@ public class CoachService implements ICoachService {
             stored.setPassword(coachDTO.getPassword());
             stored.setFirstName(coachDTO.getFirstName());
             stored.setLastName(coachDTO.getLastName());
-            coachRepository.save(stored);
+            return coachRepository.save(stored);
         }
+
+        return null;
     }
 }

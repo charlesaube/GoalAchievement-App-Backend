@@ -64,7 +64,7 @@ public class ObjectifService implements IObjectifService {
     }
 
     @Override
-    public void update(ObjectifDTO objectifDTO) {
+    public Objectif update(ObjectifDTO objectifDTO) {
         Optional<Objectif> storedOptional = readOne(objectifDTO.getObjectifId());
 
         if (storedOptional.isPresent()) {
@@ -78,8 +78,9 @@ public class ObjectifService implements IObjectifService {
             stored.setStartDate(objectifDTO.getStartDate());
             stored.setIsAchieved(objectifDTO.getIsAchieved());
             stored.setUser(user);
-            objectifRepository.save(stored);
+            return objectifRepository.save(stored);
         }
+        return null;
     }
 
     @Override

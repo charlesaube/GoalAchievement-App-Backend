@@ -39,7 +39,6 @@ public class UserResource {
 
     @GetMapping ("/coach/{coachId}")
     public List<UserDTO> getUserByCoachId(@PathVariable long coachId) {
-        IEntityMapper<User, UserDTO> mapper = new UserMapper();
         List<UserDTO> userDTO = userService.findUserByCoachId(coachId).stream().map(mapper::entityToDTO).collect(Collectors.toList());
         return userDTO;
     }
@@ -47,8 +46,7 @@ public class UserResource {
     @PostMapping("/add")
     public ResponseEntity<UserDTO> save(@RequestBody @Valid UserDTO user) {
         User saved = this.userService.save(user);
-        IEntityMapper<User, UserDTO> mapper = new UserMapper();
-        return new ResponseEntity<UserDTO>(mapper.entityToDTO(saved), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.entityToDTO(saved), HttpStatus.OK);
     }
 
     @CrossOrigin
@@ -70,9 +68,9 @@ public class UserResource {
     }
 
     @PutMapping("/edit")
-    public ResponseEntity<Void> update(@RequestBody @Valid UserDTO user) {
-        this.userService.update(user);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<UserDTO> update(@RequestBody @Valid UserDTO user) {
+        User updated = this.userService.update(user);
+        return new ResponseEntity<>(mapper.entityToDTO(updated), HttpStatus.OK);
     }
 
 

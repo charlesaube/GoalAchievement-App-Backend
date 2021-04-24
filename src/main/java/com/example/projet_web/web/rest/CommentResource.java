@@ -28,19 +28,19 @@ public class CommentResource {
         this.mapper = mapper;
     }
 
-    @GetMapping("/objectif-id/{id}")
+    @GetMapping("/objectif/{id}")
     public List<CommentDTO> getByObjectifId(@PathVariable long id){
 
         IEntityMapper<Comment, CommentDTO> mapper = new CommentMapper();
         return commentService.findAllByObjectifId(id).stream().map(mapper::entityToDTO).collect(Collectors.toList());
     }
-    @GetMapping("/user-id/{id}")
+    @GetMapping("/user/{id}")
     public List<CommentDTO> getByUserId(@PathVariable long id){
 
         IEntityMapper<Comment, CommentDTO> mapper = new CommentMapper();
         return commentService.findAllByUserId(id).stream().map(mapper::entityToDTO).collect(Collectors.toList());
     }
-    @GetMapping("/coach-id/{id}")
+    @GetMapping("/coach/{id}")
     public List<CommentDTO> getByCoachId(@PathVariable long id){
 
         IEntityMapper<Comment, CommentDTO> mapper = new CommentMapper();
@@ -50,8 +50,7 @@ public class CommentResource {
     @PostMapping("/add")
     public ResponseEntity<CommentDTO> save (@RequestBody @Valid CommentDTO comment){
         Comment saved = this.commentService.save(comment);
-        IEntityMapper<Comment, CommentDTO> mapper = new CommentMapper();
-        return new ResponseEntity<CommentDTO>(mapper.entityToDTO(saved), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.entityToDTO(saved), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -61,9 +60,9 @@ public class CommentResource {
     }
 
     @PutMapping("/edit")
-    public ResponseEntity<Void> update(@RequestBody @Valid CommentDTO comment) {
-        this.commentService.update(comment);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<CommentDTO> update(@RequestBody @Valid CommentDTO comment) {
+        Comment updated = this.commentService.update(comment);
+        return new ResponseEntity<>(mapper.entityToDTO(updated), HttpStatus.OK);
     }
 
 }

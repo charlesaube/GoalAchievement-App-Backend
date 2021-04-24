@@ -73,7 +73,7 @@ public class AchievementService implements IAchievementService {
     }
 
     @Override
-    public void update(AchievementDTO achievementDTO) {
+    public Achievement update(AchievementDTO achievementDTO) {
         Optional<Achievement> storedOptional = readOne(achievementDTO.getAchievementId());
 
         if (storedOptional.isPresent()) {
@@ -87,7 +87,9 @@ public class AchievementService implements IAchievementService {
             stored.setDate(achievementDTO.getDate());
             stored.setTitle(achievementDTO.getTitle());
             stored.setUser(user);
-            achievementRepository.save(stored);
+            return achievementRepository.save(stored);
         }
+
+        return null;
     }
 }
