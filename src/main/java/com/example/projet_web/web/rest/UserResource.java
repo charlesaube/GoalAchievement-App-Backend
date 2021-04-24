@@ -1,10 +1,13 @@
 package com.example.projet_web.web.rest;
 
+import com.example.projet_web.Model.DTO.AchievementDTO;
 import com.example.projet_web.Model.DTO.CategoryDTO;
 import com.example.projet_web.Model.DTO.UserDTO;
+import com.example.projet_web.Model.entities.Achievement;
 import com.example.projet_web.Model.entities.Category;
 import com.example.projet_web.Model.entities.User;
 import com.example.projet_web.services.implementation.UserService;
+import com.example.projet_web.services.mappers.AchievementMapper;
 import com.example.projet_web.services.mappers.IEntityMapper;
 import com.example.projet_web.services.mappers.UserMapper;
 import org.springframework.http.HttpStatus;
@@ -26,6 +29,15 @@ public class UserResource {
         this.userService = userService;
         this.mapper = mapper;
     }
+
+    @CrossOrigin
+    @GetMapping("/all")
+    public List<UserDTO> getAll()
+    {
+        IEntityMapper<User, UserDTO> mapper = new UserMapper();
+        return this.userService.readAll().stream().map(mapper::entityToDTO).collect(Collectors.toList());
+    }
+
     @GetMapping("/id/{id}")
     public UserDTO getUserById(@PathVariable long id){
         return userService.readOne(id).map(mapper::entityToDTO).get();

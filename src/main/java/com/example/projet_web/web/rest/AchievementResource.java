@@ -29,6 +29,7 @@ public class AchievementResource {
         this.achievementMapper = achievementMapper;
     }
 
+    @CrossOrigin
     @GetMapping("/all")
     public List<AchievementDTO> getAll()
     {

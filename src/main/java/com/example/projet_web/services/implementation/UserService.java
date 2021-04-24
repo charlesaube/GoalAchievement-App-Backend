@@ -1,6 +1,7 @@
 package com.example.projet_web.services.implementation;
 
 import com.example.projet_web.Model.DTO.UserDTO;
+import com.example.projet_web.Model.entities.Achievement;
 import com.example.projet_web.Model.entities.Coach;
 import com.example.projet_web.Model.entities.User;
 import com.example.projet_web.repositories.interfaces.IUserRepository;
@@ -31,6 +32,11 @@ public class UserService implements IUserService {
     @Override
     public Optional<User> readOne(long Id) {
         return userRepository.findById(Id);
+    }
+
+    @Override
+    public List<User> readAll() {
+        return userRepository.findAll();
     }
 
     @Override

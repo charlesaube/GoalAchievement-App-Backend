@@ -30,6 +30,7 @@ public class ObjectifResource {
         this.mapper = mapper;
     }
 
+    @CrossOrigin
     @GetMapping("/all")
     public List<ObjectifDTO> getAll()
     {
