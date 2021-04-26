@@ -51,17 +51,16 @@ public class UserResource {
 
     @CrossOrigin
     @PostMapping("/authenticate")
-    public UserDTO authenticate(@RequestBody @Valid UserDTO userDTO ) {
+    public ResponseEntity<?> authenticate(@RequestBody @Valid UserDTO userDTO ) {
 
         for( User user: this.userService.readAll()){
             if ( user.getEmail().equals( userDTO.getEmail()) && user.getPassword().equals( userDTO.getPassword()) )
             {
-                IEntityMapper<User, UserDTO> mapper = new UserMapper();
-                return mapper.entityToDTO(user);
+                return new ResponseEntity<>(mapper.entityToDTO(user),HttpStatus.OK);
             }
         }
 
-        return userDTO;
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
     @DeleteMapping("/delete/{id}")
