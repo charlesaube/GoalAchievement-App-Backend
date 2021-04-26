@@ -51,17 +51,17 @@ public class UserResource {
 
     @CrossOrigin
     @PostMapping("/authenticate")
-    public Boolean authenticate(@RequestBody @Valid UserDTO userDTO ) {
+    public UserDTO authenticate(@RequestBody @Valid UserDTO userDTO ) {
 
         for( User user: this.userService.readAll()){
             if ( user.getEmail().equals( userDTO.getEmail()) && user.getPassword().equals( userDTO.getPassword()) )
             {
                 IEntityMapper<User, UserDTO> mapper = new UserMapper();
-                return true;
+                return mapper.entityToDTO(user);
             }
         }
 
-        return false;
+        return userDTO;
     }
 
     @DeleteMapping("/delete/{id}")
