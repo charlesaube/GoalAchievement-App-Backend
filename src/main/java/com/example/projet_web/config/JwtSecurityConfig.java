@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class JwtSecurityConfig extends WebSecurityConfigurerAdapter{
@@ -27,6 +28,11 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
+    }
+
+    @Bean
+    public PasswordEncoder encoder(){
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
@@ -50,8 +56,7 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter{
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                //.antMatchers("/api/login").permitAll()
-                .antMatchers("/api/user/coach/**").hasRole("ADMIN")
+                .antMatchers("/api/login").permitAll()
                 .antMatchers("/api/**").permitAll()
                 .anyRequest().fullyAuthenticated();
 
