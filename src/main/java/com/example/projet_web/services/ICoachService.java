@@ -17,4 +17,6 @@ public interface ICoachService {
     Coach save(CoachDTO coachDTO);
     Coach update(CoachDTO coachDTO);
     Coach authenticate(CoachDTO coachDTO);
+    List<Coach> getCoachsWithleastUser(int limit);
+
 }

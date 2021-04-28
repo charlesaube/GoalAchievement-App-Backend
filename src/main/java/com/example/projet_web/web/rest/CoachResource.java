@@ -42,6 +42,12 @@ public class CoachResource {
         return coachService.readOne(id).map(mapper::entityToDTO).get();
     }
 
+    @GetMapping("/leastUsed/{limit}")
+    public ResponseEntity<List<CoachDTO>> getCoachsLeastUsed(@PathVariable int limit){
+        List<CoachDTO> coachsDTO = coachService.getCoachsWithleastUser(limit).stream().map(mapper::entityToDTO).collect(Collectors.toList());
+        return new ResponseEntity<>(coachsDTO,HttpStatus.OK);
+
+    }
 
     @PostMapping("/add")
     public ResponseEntity<CoachDTO> save(@RequestBody @Valid CoachDTO coach) {

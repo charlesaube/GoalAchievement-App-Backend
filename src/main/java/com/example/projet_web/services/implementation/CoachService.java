@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 public class CoachService implements ICoachService {
 
@@ -89,5 +91,11 @@ public class CoachService implements ICoachService {
             }
         }
         return null;
+    }
+
+    @Override
+    public List<Coach> getCoachsWithleastUser(int limit) {
+        List<Coach> allCoach = this.coachRepository.findCoachsOrderByLeastUsed();
+        return allCoach.stream().limit(limit).collect(Collectors.toList());
     }
 }
