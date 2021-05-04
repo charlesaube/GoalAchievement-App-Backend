@@ -43,6 +43,7 @@ public class UserResource {
         return userDTO;
     }
 
+    @CrossOrigin
     @PostMapping("/add")
     public ResponseEntity<UserDTO> save(@RequestBody @Valid UserDTO user) {
         User saved = this.userService.save(user);
