@@ -3,7 +3,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user_app")
 @NamedQueries({
         @NamedQuery(name = "User.findUserBySubstr", query = "SELECT u FROM User u WHERE substring(u.firstName,1, length(:subStr) ) " +
                 "= :subStr and u.coach.coachId = :coachId ")
