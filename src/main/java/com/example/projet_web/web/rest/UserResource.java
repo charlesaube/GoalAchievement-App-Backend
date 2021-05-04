@@ -53,14 +53,11 @@ public class UserResource {
     @CrossOrigin
     @PostMapping("/authenticate")
     public ResponseEntity<?> authenticate(@RequestBody @Valid UserDTO userDTO ) {
-
-        for( User user: this.userService.readAll()){
-            if ( user.getEmail().equals( userDTO.getEmail()) && user.getPassword().equals( userDTO.getPassword()) )
-            {
-                return new ResponseEntity<>(mapper.entityToDTO(user),HttpStatus.OK);
-            }
+        User user = this.userService.authenticate(userDTO);
+        if (user != null)
+        {
+            return new ResponseEntity<>(mapper.entityToDTO(user),HttpStatus.OK);
         }
-
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 

@@ -17,4 +17,5 @@ public interface IUserService {
     void delete(Long userId);
     User update(UserDTO userDTO);
     List<User> readAll();
+    User authenticate(UserDTO userDTO);
 }

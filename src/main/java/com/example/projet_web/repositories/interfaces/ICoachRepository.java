@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface ICoachRepository extends JpaRepository<Coach,Long> {
     List<Coach> findAllCoachByFirstNameSubString(String subStr);
+    List<Coach> findCoachsOrderByLeastUsed();
 }

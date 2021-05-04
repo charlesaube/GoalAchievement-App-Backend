@@ -6,6 +6,7 @@ import com.example.projet_web.Model.DTO.ObjectifDTO;
 import com.example.projet_web.Model.DTO.UserDTO;
 import com.example.projet_web.Model.entities.Coach;
 import com.example.projet_web.Model.entities.Objectif;
+import com.example.projet_web.Model.entities.User;
 import com.example.projet_web.services.implementation.CoachService;
 import com.example.projet_web.services.mappers.CoachMapper;
 import com.example.projet_web.services.mappers.IEntityMapper;
@@ -41,6 +42,12 @@ public class CoachResource {
         return coachService.readOne(id).map(mapper::entityToDTO).get();
     }
 
+    @GetMapping("/leastUsed/{limit}")
+    public ResponseEntity<List<CoachDTO>> getCoachsLeastUsed(@PathVariable int limit){
+        List<CoachDTO> coachsDTO = coachService.getCoachsWithleastUser(limit).stream().map(mapper::entityToDTO).collect(Collectors.toList());
+        return new ResponseEntity<>(coachsDTO,HttpStatus.OK);
+
+    }
 
     @PostMapping("/add")
     public ResponseEntity<CoachDTO> save(@RequestBody @Valid CoachDTO coach) {
@@ -58,6 +65,17 @@ public class CoachResource {
     public ResponseEntity<CoachDTO> update(@RequestBody @Valid CoachDTO coach) {
         Coach updated = this.coachService.update(coach);
         return new ResponseEntity<>(mapper.entityToDTO(updated), HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @PostMapping("/authenticate")
+    public ResponseEntity<?> authenticate(@RequestBody @Valid CoachDTO coachDTO ) {
+        Coach coach = this.coachService.authenticate(coachDTO);
+        if (coach != null)
+        {
+            return new ResponseEntity<>(mapper.entityToDTO(coach),HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
 
