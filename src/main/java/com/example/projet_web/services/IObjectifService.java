@@ -17,4 +17,5 @@ public interface IObjectifService {
     Objectif save(ObjectifDTO objectifDTO);
     void delete(Long objectifId);
     Objectif update(ObjectifDTO objectifDTO);
+    List<Objectif> findObjectifByUserId(long id);
 }

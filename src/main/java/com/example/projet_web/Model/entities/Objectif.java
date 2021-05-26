@@ -15,6 +15,7 @@ import java.io.Serializable;
         , @NamedQuery(name = "Objectif.findObjectifSortByMostRecent", query = "SELECT o FROM Objectif o order by o.startDate desc")
         , @NamedQuery(name = "Objectif.countAll", query = "SELECT count(o) FROM Objectif o")
         , @NamedQuery(name = "Objectif.findObjectifAccomplished", query = "SELECT o FROM Objectif o WHERE o.isAchieved = 1 ")
+        , @NamedQuery(name = "Objectif.findObjectifByUserId", query = "SELECT o FROM Objectif o WHERE o.user.userId = :userId ")
 })
 public class Objectif implements Serializable {
     private static final long serialVersionUID = 1L;

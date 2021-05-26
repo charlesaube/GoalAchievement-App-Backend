@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
 @RestController
 @RequestMapping("api/objectif")
 public class ObjectifResource {
@@ -64,6 +65,7 @@ public class ObjectifResource {
         return objectifService.countAll();
     }
 
+    @CrossOrigin
     @PostMapping("/add")
     public ResponseEntity<ObjectifDTO> save(@RequestBody @Valid ObjectifDTO objectif) {
         Objectif saved = this.objectifService.save(objectif);
@@ -79,6 +81,15 @@ public class ObjectifResource {
     public ResponseEntity<ObjectifDTO> update(@RequestBody @Valid ObjectifDTO objectif) {
         Objectif updated = this.objectifService.update(objectif);
         return new ResponseEntity<>(mapper.entityToDTO(updated), HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping("/userId/{id}")
+    public  List<ObjectifDTO> getObjectifByUserId(@PathVariable Long id)
+    {
+        IEntityMapper<Objectif, ObjectifDTO> mapper = new ObjectifMapper();
+        return objectifService.findObjectifByUserId(id).stream().map(mapper::entityToDTO).collect(Collectors.toList());
+
     }
 
 

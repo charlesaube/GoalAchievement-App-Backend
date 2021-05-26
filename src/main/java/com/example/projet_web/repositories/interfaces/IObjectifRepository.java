@@ -13,5 +13,6 @@ public interface IObjectifRepository extends JpaRepository<Objectif,Long> {
     List<Objectif> findObjectifSortByMostRecent();
     Long countAll();
     List<Objectif> findObjectifAccomplished();
+    List<Objectif> findObjectifByUserId(long userId);
 
 }
