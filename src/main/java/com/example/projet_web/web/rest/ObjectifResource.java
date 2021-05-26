@@ -94,6 +94,16 @@ public class ObjectifResource {
 
     }
 
+    @CrossOrigin
+    @GetMapping("/UserAndCat/{userId}/{categoryId}")
+    public  List<ObjectifDTO> getObjectifByUserIdandCategoryId(@PathVariable Long userId, @PathVariable Long categoryId)
+    {
+        System.out.println(categoryId + userId);
+        IEntityMapper<Objectif, ObjectifDTO> mapper = new ObjectifMapper();
+        return objectifService.findObjectifByUserIdAndCategoryId(userId, categoryId).stream().map(mapper::entityToDTO).collect(Collectors.toList());
+
+    }
+
 
 
 }

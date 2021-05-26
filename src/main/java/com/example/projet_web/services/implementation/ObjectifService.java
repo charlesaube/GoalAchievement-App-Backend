@@ -89,6 +89,11 @@ public class ObjectifService implements IObjectifService {
     }
 
     @Override
+    public List<Objectif> findObjectifByUserIdAndCategoryId(long userId, long categoryId) {
+        return objectifRepository.findObjectifByUserIdAndCategoryId(userId, categoryId);
+    }
+
+    @Override
     public Objectif save(ObjectifDTO objectifDTO) {
         Category category = categoryService.readOne(objectifDTO.getCategoryId()).get();
         User user = userService.readOne(objectifDTO.getUserId()).get();

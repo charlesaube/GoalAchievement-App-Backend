@@ -1,5 +1,7 @@
 package com.example.projet_web.Model.DTO;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Date;
 
 
@@ -7,7 +9,11 @@ public class ObjectifDTO {
 
     private Long objectifId;
     private String objectifName;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private java.sql.Date startDate;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private java.sql.Date endDate;
     private java.lang.Byte isAchieved;
     private Long userId;

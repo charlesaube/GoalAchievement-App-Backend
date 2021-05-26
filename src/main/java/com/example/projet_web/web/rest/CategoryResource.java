@@ -34,6 +34,7 @@ public class CategoryResource {
                 .collect(Collectors.toList());
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity<?> getCategoryById(@PathVariable long id) {
         Optional<Category> category = categoryService.readOne(id);

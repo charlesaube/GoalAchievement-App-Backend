@@ -18,4 +18,5 @@ public interface IObjectifService {
     void delete(Long objectifId);
     Objectif update(ObjectifDTO objectifDTO);
     List<Objectif> findObjectifByUserId(long id);
+    List<Objectif> findObjectifByUserIdAndCategoryId(long userId, long categoryId);
 }

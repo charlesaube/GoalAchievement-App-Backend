@@ -16,6 +16,7 @@ import java.io.Serializable;
         , @NamedQuery(name = "Objectif.countAll", query = "SELECT count(o) FROM Objectif o")
         , @NamedQuery(name = "Objectif.findObjectifAccomplished", query = "SELECT o FROM Objectif o WHERE o.isAchieved = 1 ")
         , @NamedQuery(name = "Objectif.findObjectifByUserId", query = "SELECT o FROM Objectif o WHERE o.user.userId = :userId ")
+        , @NamedQuery(name = "Objectif.findObjectifByUserIdAndCategoryId", query = "SELECT o FROM Objectif o WHERE o.user.userId = :userId AND o.category.categoryId =:categoryId")
 })
 public class Objectif implements Serializable {
     private static final long serialVersionUID = 1L;
