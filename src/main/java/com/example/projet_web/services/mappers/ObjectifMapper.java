@@ -15,8 +15,8 @@ public class ObjectifMapper implements IEntityMapper<Objectif, ObjectifDTO> {
                 objectif.getStartDate(),
                 objectif.getEndDate(),
                 objectif.getIsAchieved(),
-                objectif.getUser().getUserId(),
-                objectif.getCategory().getCategoryId()
+                objectif.getCategory().getCategoryId(),
+                objectif.getUser().getUserId()
         );
     }
 }

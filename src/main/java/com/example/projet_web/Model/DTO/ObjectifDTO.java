@@ -10,8 +10,9 @@ public class ObjectifDTO {
     private java.sql.Date startDate;
     private java.sql.Date endDate;
     private java.lang.Byte isAchieved;
-    private Long categoryId;
     private Long userId;
+    private Long categoryId;
+
 
     public ObjectifDTO(){}
 
