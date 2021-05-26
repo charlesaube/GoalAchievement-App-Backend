@@ -38,7 +38,7 @@ public class ObjectifResource {
         IEntityMapper<Objectif, ObjectifDTO> mapper = new ObjectifMapper();
         return objectifService.readAll().stream().map(mapper::entityToDTO).collect(Collectors.toList());
     }
-
+    @CrossOrigin
     @GetMapping("/id/{id}")
     public ResponseEntity<?> getObjectifById(@PathVariable long id)
     {
@@ -47,19 +47,19 @@ public class ObjectifResource {
         return categoryDTO.isPresent() ? new ResponseEntity<>(categoryDTO.get(),
                 HttpStatus.OK) : new ResponseEntity<>("Objectif Id not found", HttpStatus.NOT_FOUND);
     }
-
+    @CrossOrigin
     @GetMapping("/most-recent")
     public List<ObjectifDTO> getObjectifByMostRecent(){
         IEntityMapper<Objectif, ObjectifDTO> mapper = new ObjectifMapper();
         return objectifService.findObjectifSortByMostRecent().stream().map(mapper::entityToDTO).collect(Collectors.toList());
     }
-
+    @CrossOrigin
     @GetMapping("/accomplished")
     public List<ObjectifDTO> getAccomplished() {
         IEntityMapper<Objectif, ObjectifDTO> mapper = new ObjectifMapper();
         return objectifService.findObjectifAccomplished().stream().map(mapper::entityToDTO).collect(Collectors.toList());
     }
-
+    @CrossOrigin
     @GetMapping("/count")
     public Long countAll(){
         return objectifService.countAll();
@@ -72,11 +72,13 @@ public class ObjectifResource {
         return new ResponseEntity<>(mapper.entityToDTO(saved), HttpStatus.OK);
     }
 
+    @CrossOrigin
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         this.objectifService.delete(id);
         return ResponseEntity.noContent().build();
     }
+    @CrossOrigin
     @PutMapping("/edit")
     public ResponseEntity<ObjectifDTO> update(@RequestBody @Valid ObjectifDTO objectif) {
         Objectif updated = this.objectifService.update(objectif);

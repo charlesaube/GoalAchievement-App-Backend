@@ -31,12 +31,13 @@ public class UserResource {
         IEntityMapper<User, UserDTO> mapper = new UserMapper();
         return this.userService.readAll().stream().map(mapper::entityToDTO).collect(Collectors.toList());
     }
-
+    @CrossOrigin
     @GetMapping("/id/{id}")
     public UserDTO getUserById(@PathVariable long id){
         return userService.readOne(id).map(mapper::entityToDTO).get();
     }
 
+    @CrossOrigin
     @GetMapping ("/coach/{coachId}")
     public List<UserDTO> getUserByCoachId(@PathVariable long coachId) {
         List<UserDTO> userDTO = userService.findUserByCoachId(coachId).stream().map(mapper::entityToDTO).collect(Collectors.toList());
@@ -60,13 +61,13 @@ public class UserResource {
         }
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
-
+    @CrossOrigin
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         this.userService.delete(id);
         return ResponseEntity.noContent().build();
     }
-
+    @CrossOrigin
     @PutMapping("/edit")
     public ResponseEntity<UserDTO> update(@RequestBody @Valid UserDTO user) {
         User updated = this.userService.update(user);

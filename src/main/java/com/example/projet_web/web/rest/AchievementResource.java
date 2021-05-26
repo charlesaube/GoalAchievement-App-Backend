@@ -37,22 +37,34 @@ public class AchievementResource {
         return this.achievementService.readAll().stream().map(mapper::entityToDTO).collect(Collectors.toList());
     }
 
+    @CrossOrigin
     @PostMapping("/add")
     public ResponseEntity<AchievementDTO> save(@RequestBody @Valid AchievementDTO achievement) {
         Achievement saved = this.achievementService.save(achievement);
         return new ResponseEntity<>(achievementMapper.entityToDTO(saved), HttpStatus.OK);
     }
 
+    @CrossOrigin
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         this.achievementService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
+    @CrossOrigin
     @PutMapping("/edit")
     public ResponseEntity<AchievementDTO> update(@RequestBody @Valid AchievementDTO achievement) {
         Achievement updated = this.achievementService.update(achievement);
         return new ResponseEntity<>(achievementMapper.entityToDTO(updated), HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping("/userId/{id}")
+    public  List<AchievementDTO> getAchievementByUserId(@PathVariable Long id)
+    {
+        IEntityMapper<Achievement, AchievementDTO> mapper = new AchievementMapper();
+        return achievementService.getAllAchievementOfUser(id).stream().map(mapper::entityToDTO).collect(Collectors.toList());
+
     }
 
 }

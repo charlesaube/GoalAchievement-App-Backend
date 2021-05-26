@@ -11,6 +11,7 @@ import java.io.Serializable;
         @NamedQuery(name = "Achievement.findAchievementById", query = "SELECT a FROM Achievement a WHERE a.achievementId = :achievementId")
         , @NamedQuery(name = "Achievement.findAllAchievementOfUser", query = "SELECT a FROM Achievement a WHERE a.user.userId = :userId")
         , @NamedQuery(name = "Achievement.findAllAchievementOfUserByCategory", query = "SELECT a FROM Achievement a WHERE a.user.userId  = :userId and a.category.categoryId = :categoryId order by a.date asc")
+
         })
 @NoArgsConstructor //Lombok
 @AllArgsConstructor
