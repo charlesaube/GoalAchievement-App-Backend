@@ -58,6 +58,7 @@ public class UserResource {
         if (user != null)
         {
             return new ResponseEntity<>(mapper.entityToDTO(user),HttpStatus.OK);
+
         }
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
